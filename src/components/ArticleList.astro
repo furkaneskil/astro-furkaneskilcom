@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatHomeDate, groupPostsForDisplay, normalizeSlug } from '../utils/blog';
+
+interface Props {
+	posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+const rows = groupPostsForDisplay(posts);
+---
+
+<p class="article-list">
+	{
+		rows.map(({ post, spacerBefore }) => {
+			const slug = normalizeSlug(post.id);
+			const date = formatHomeDate(post.data.pubDate);
+			const linkClass = post.data.linkStyle === 'small' ? 'link-small' : '';
+
+			if (post.data.memorial) {
+				return (
+					<>
+						{spacerBefore && <span class="list-spacer" />}
+						{date}:{' '}
+						<a href="" title={post.data.memorial} class:list={[linkClass && linkClass]}>
+							{post.data.title}
+						</a>
+						<br />
+					</>
+				);
+			}
+
+			return (
+				<>
+					{spacerBefore && <span class="list-spacer" />}
+					{date}:{' '}
+					<a href={`/blog/${slug}/`} class:list={[linkClass && linkClass]}>
+						{post.data.title}
+					</a>
+					<br />
+				</>
+			);
+		})
+	}
+</p>

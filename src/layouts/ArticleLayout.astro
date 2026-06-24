@@ -1,0 +1,38 @@
+---
+import HomeLayout from './HomeLayout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import { formatArticleDate } from '../utils/blog';
+
+interface Props {
+	title: string;
+	description: string;
+	pubDate: Date;
+	updatedDate?: Date;
+}
+
+const { title, description, pubDate, updatedDate } = Astro.props;
+---
+
+<HomeLayout
+	title={title}
+	description={description}
+	type="article"
+	pubDate={pubDate}
+	updatedDate={updatedDate}
+>
+	<SectionTitle>{title}</SectionTitle>
+	<div class="article-date">
+		<time datetime={pubDate.toISOString()}>{formatArticleDate(pubDate)}</time>
+		{
+			updatedDate && (
+				<p>
+					Last updated on{' '}
+					<time datetime={updatedDate.toISOString()}>{formatArticleDate(updatedDate)}</time>
+				</p>
+			)
+		}
+	</div>
+	<div class="article-content">
+		<slot />
+	</div>
+</HomeLayout>

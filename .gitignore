@@ -200,3 +200,6 @@ dist
 
 ### Astro ###
 .astro/
+
+### Local reference ###
+src/content/blog/example-article/

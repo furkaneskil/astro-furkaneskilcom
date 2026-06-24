@@ -1,0 +1,35 @@
+---
+export interface ReferenceItem {
+	id: number;
+	text: string;
+	href?: string;
+}
+
+interface Props {
+	items: ReferenceItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<h2>References</h2>
+<table class="references-table">
+	<tbody style="vertical-align: top;">
+		{
+			items.map((item) => (
+				<tr>
+					<td class="ref">
+						<a id={`footnote_${item.id}`} />
+						<a href={`#back_${item.id}`}>^</a>
+					</td>
+					<td class="ref ref-num">
+						[{item.id}]
+					</td>
+					<td class="ref ref-content">
+						{item.href ? <a href={item.href}>{item.text}</a> : item.text}
+					</td>
+				</tr>
+			))
+		}
+	</tbody>
+</table>

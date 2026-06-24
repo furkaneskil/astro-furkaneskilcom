@@ -1,0 +1,33 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import '../styles/home.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	type?: 'website' | 'article';
+	pubDate?: Date;
+	updatedDate?: Date;
+}
+
+const {
+	title = SITE_TITLE,
+	description = SITE_DESCRIPTION,
+	type = 'website',
+	pubDate,
+	updatedDate,
+} = Astro.props;
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	type={type}
+	pubDate={pubDate}
+	updatedDate={updatedDate}
+>
+	<HomeHeader slot="header" />
+	<slot />
+</BaseLayout>

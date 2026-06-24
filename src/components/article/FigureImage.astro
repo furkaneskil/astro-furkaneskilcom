@@ -1,0 +1,43 @@
+---
+interface Props {
+	src: string;
+	alt: string;
+	width: number;
+	height: number;
+	caption?: string;
+	href?: string;
+	pixel?: boolean;
+}
+
+const { src, alt, width, height, caption, href, pixel = false } = Astro.props;
+const className = pixel ? 'pixel' : undefined;
+---
+
+<figure>
+	{
+		href ? (
+			<a href={href}>
+				<img
+					src={src}
+					alt={alt}
+					width={width}
+					height={height}
+					loading="lazy"
+					class={className}
+					style="width: 100%; height: auto;"
+				/>
+			</a>
+		) : (
+			<img
+				src={src}
+				alt={alt}
+				width={width}
+				height={height}
+				loading="lazy"
+				class={className}
+				style="width: 100%; height: auto;"
+			/>
+		)
+	}
+	{caption && <figcaption>{caption}</figcaption>}
+</figure>

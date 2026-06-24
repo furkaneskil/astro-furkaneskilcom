@@ -1,0 +1,9 @@
+---
+interface Props {
+	id: number;
+}
+
+const { id } = Astro.props;
+---
+
+<a id={`back_${id}`} href={`#footnote_${id}`} style="text-decoration: none;"><sup>[{id}]</sup></a>

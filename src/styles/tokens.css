@@ -1,0 +1,17 @@
+:root {
+	--color-link: #1a56a8;
+	--color-link-visited: #13407e;
+	--color-link-hover: #111;
+	--color-text: #1a1a1a;
+	--color-text-muted: #555;
+	--color-bg: white;
+	--color-code-bg: #eef1f4;
+	--color-blockquote-bg: #f7f8fa;
+	--color-border: #ccc;
+	--color-table-header: #e8eaed;
+	--color-icon: #555;
+	--font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+	--font-ui: 'Source Sans 3', system-ui, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+	--width-content: 700px;
+}
