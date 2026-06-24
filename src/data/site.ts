@@ -4,6 +4,6 @@ export const META_DESCRIPTION =
 
 export const ABOUT_PARAGRAPHS = [
 	'Computer Engineering graduate from Çukurova University, currently pursuing a thesis-based M.Sc. in Electrical and Electronics Engineering at Mersin University.',
-	'My background in computer engineering naturally led me toward graduate study in electrical and electronics engineering, where I am developing my research focus on applications of artificial intelligence in engineering problems.',
+	'After computer engineering, I moved into electrical and electronics engineering at the graduate level to study uses of AI for engineering problems.',
 	'Open to research collaborations, technical conversations, and opportunities aligned with my studies in AI and engineering — feel free to reach out.',
 ] as const;
