@@ -6,4 +6,4 @@ export const SECTIONS = {
 
 export type SectionKey = keyof typeof SECTIONS;
 
-export const SECTION_KEYS = Object.keys(SECTIONS) as SectionKey[];
+export const SECTION_KEYS = ['articles', 'projects', 'notes'] as const satisfies readonly SectionKey[];

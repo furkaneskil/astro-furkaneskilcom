@@ -1,45 +1,23 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { formatHomeDate, groupPostsForDisplay, normalizeSlug } from '../utils/blog';
+import { normalizeSlug } from '../utils/blog';
+import { SECTIONS } from '../config/sections';
 
 interface Props {
 	posts: CollectionEntry<'blog'>[];
 }
 
 const { posts } = Astro.props;
-const rows = groupPostsForDisplay(posts);
 ---
 
-<p class="article-list">
+<ol class="work-list">
 	{
-		rows.map(({ post, spacerBefore }) => {
-			const slug = normalizeSlug(post.id);
-			const date = formatHomeDate(post.data.pubDate);
-			const linkClass = post.data.linkStyle === 'small' ? 'link-small' : '';
-
-			if (post.data.memorial) {
-				return (
-					<>
-						{spacerBefore && <span class="list-spacer" />}
-						{date}:{' '}
-						<a href="" title={post.data.memorial} class:list={[linkClass && linkClass]}>
-							{post.data.title}
-						</a>
-						<br />
-					</>
-				);
-			}
-
-			return (
-				<>
-					{spacerBefore && <span class="list-spacer" />}
-					{date}:{' '}
-					<a href={`/blog/${slug}/`} class:list={[linkClass && linkClass]}>
-						{post.data.title}
-					</a>
-					<br />
-				</>
-			);
-		})
+		posts.map((post) => (
+			<li>
+				<time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.getFullYear()}</time>
+				<a href={`/blog/${normalizeSlug(post.id)}/`}>{post.data.title}</a>
+				<span>{SECTIONS[post.data.section].title.replace(/s$/, '')}</span>
+			</li>
+		))
 	}
-</p>
+</ol>

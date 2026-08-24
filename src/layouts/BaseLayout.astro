@@ -7,9 +7,10 @@ interface Props {
 	type?: 'website' | 'article';
 	pubDate?: Date;
 	updatedDate?: Date;
+	bodyClass?: string;
 }
 
-const { title, description, type, pubDate, updatedDate } = Astro.props;
+const { title, description, type, pubDate, updatedDate, bodyClass = 'article-page' } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,7 +24,7 @@ const { title, description, type, pubDate, updatedDate } = Astro.props;
 			updatedDate={updatedDate}
 		/>
 	</head>
-	<body class="home">
+	<body class={bodyClass}>
 		<slot name="header" />
 		<main>
 			<slot />

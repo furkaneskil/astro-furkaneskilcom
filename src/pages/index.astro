@@ -1,33 +1,36 @@
 ---
 import HomeLayout from '../layouts/HomeLayout.astro';
-import SectionTitle from '../components/SectionTitle.astro';
 import ArticleList from '../components/ArticleList.astro';
 import { SITE_PAGE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { ABOUT_PARAGRAPHS } from '../data/site';
-import { SECTIONS, SECTION_KEYS } from '../config/sections';
-import { getPostsBySection } from '../utils/blog';
+import { getPublishedPosts } from '../utils/blog';
 
-const postsBySection = await getPostsBySection();
-const sortedSections = SECTION_KEYS
-	.map((key) => ({ key, ...SECTIONS[key] }))
-	.sort((a, b) => a.order - b.order);
+const posts = await getPublishedPosts();
 ---
 
-<HomeLayout title={SITE_PAGE_TITLE} description={SITE_DESCRIPTION}>
-	<SectionTitle>About</SectionTitle>
-	{ABOUT_PARAGRAPHS.map((paragraph) => <p>{paragraph}</p>)}
+<HomeLayout title={SITE_PAGE_TITLE} description={SITE_DESCRIPTION} variant="portfolio">
+	<div class="portfolio-shell">
+		<div class="artwork-column" aria-hidden="true">
+			<div class="mercury-artwork"></div>
+		</div>
 
-	{
-		sortedSections.map(({ key, title }) => {
-			const posts = postsBySection[key];
-			if (posts.length === 0) return null;
+		<section class="editorial-column" aria-label="Professional profile">
+			<article class="homepage-content">
+				<p class="professional-line">Business Development · Sales Development · B2B Sales</p>
+				<h1><span>Understand the business.</span><span>Start the right conversation.</span></h1>
+				<p class="lead">At the beginning of my B2B sales career, I’m focused on prospect research, qualification, outreach, and CRM discipline—learning how companies buy and what makes an opportunity relevant.</p>
 
-			return (
-				<>
-					<SectionTitle>{title}</SectionTitle>
-					<ArticleList posts={posts} />
-				</>
-			);
-		})
-	}
+				{posts.length > 0 && (
+					<div class="work-summary">
+						<p class="content-label">Work</p>
+						<ArticleList posts={posts} />
+					</div>
+				)}
+
+				<div class="contact-summary">
+					<h2>Let’s talk.</h2>
+					<p>Open to early-career opportunities in Sales Development and Business Development.</p>
+				</div>
+			</article>
+		</section>
+	</div>
 </HomeLayout>

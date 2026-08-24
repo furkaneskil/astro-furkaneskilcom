@@ -1,17 +1,19 @@
 :root {
-	--color-link: #1a56a8;
-	--color-link-visited: #13407e;
-	--color-link-hover: #111;
-	--color-text: #1a1a1a;
-	--color-text-muted: #555;
-	--color-bg: white;
+	--color-link: #26241f;
+	--color-link-visited: #26241f;
+	--color-link-hover: #8f6d27;
+	--color-text: #24231f;
+	--color-text-muted: #6c6961;
+	--color-bg: #faf9f5;
+	--color-gold: #b18a3c;
 	--color-code-bg: #eef1f4;
 	--color-blockquote-bg: #f7f8fa;
-	--color-border: #ccc;
+	--color-border: #d9d6cd;
 	--color-table-header: #e8eaed;
 	--color-icon: #555;
 	--font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 	--font-ui: 'Source Sans 3', system-ui, sans-serif;
 	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-	--width-content: 700px;
+	--width-content: 720px;
+	--width-spread: 1480px;
 }
