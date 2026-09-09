@@ -101,17 +101,26 @@ body.portfolio-page {
 	min-height: 0;
 }
 
-.mercury-artwork {
+.mercury-primary {
 	position: absolute;
 	bottom: clamp(-0.25rem, -0.4vh, 0rem);
 	left: 46%;
 	width: auto;
 	height: min(94svh, 920px);
 	aspect-ratio: 2 / 3;
+	transform: translateX(-50%);
+}
+
+.mercury-artwork {
+	width: 100%;
+	height: 100%;
 	background: var(--color-gold);
 	-webkit-mask: url('/images/hermes-ink-mask.png') center / contain no-repeat;
 	mask: url('/images/hermes-ink-mask.png') center / contain no-repeat;
-	transform: translateX(-50%);
+}
+
+.mercury-afterimage {
+	display: none;
 }
 
 .editorial-column {
@@ -314,22 +323,9 @@ body.article-page {
 .article-page img.pixel,
 .article-page canvas.pixel { image-rendering: pixelated; image-rendering: crisp-edges; }
 
-@media (max-width: 980px) {
-	.site-header-inner,
-	.portfolio-shell {
-		grid-template-columns: minmax(310px, 44%) minmax(0, 1fr);
-		gap: 2rem;
-		padding-right: 1.5rem;
-		padding-left: 1.5rem;
-	}
-
-	.header-link,
-	.resume-link { font-size: 0.64rem; }
-	.mercury-artwork { left: 44%; }
-	.homepage-content h1 { font-size: clamp(2.8rem, 5vw, 3.8rem); }
-}
-
-@media (max-width: 760px) {
+/* The two-column spread needs room. Tablets and smaller screens become a
+   deliberate single-column composition rather than a compressed desktop. */
+@media (max-width: 1080px) {
 	body.portfolio-page {
 		overflow: auto;
 	}
@@ -337,23 +333,53 @@ body.article-page {
 	.site-header-inner {
 		display: flex;
 		justify-content: space-between;
-		padding: 1.4rem 1.25rem 0;
-	}
-
-	.site-mark {
-		display: inline-block;
+		padding: 1.4rem clamp(1.25rem, 4vw, 2.5rem) 0;
 	}
 
 	.header-right {
 		justify-content: flex-end;
 	}
 
-	.resume-link { padding-top: 0.05rem; }
+	.header-link,
+	.resume-link { font-size: 0.64rem; }
 
 	.portfolio-shell {
 		display: block;
 		height: auto;
-		padding: 0 1.25rem 2rem;
+		max-width: 56rem;
+		padding: 0 clamp(1.25rem, 4vw, 2.5rem) 3rem;
+	}
+
+	.artwork-column {
+		height: clamp(25rem, 52svh, 34rem);
+		min-height: 0;
+	}
+
+	.mercury-primary {
+		top: 50%;
+		bottom: auto;
+		left: 50%;
+		height: min(58svh, 36rem);
+		transform: translate(-50%, -50%);
+	}
+
+	.editorial-column {
+		display: block;
+		padding-top: clamp(2.25rem, 5vh, 3.5rem);
+	}
+
+	.homepage-content {
+		max-width: 44rem;
+		margin: 0 auto;
+	}
+
+	.homepage-content h1 { font-size: clamp(3rem, 6.5vw, 4.1rem); }
+	.professional-line { font-size: 0.76rem; }
+}
+
+@media (max-width: 760px) {
+	.portfolio-shell {
+		padding-bottom: 2rem;
 	}
 
 	.artwork-column {
@@ -361,17 +387,8 @@ body.article-page {
 		min-height: 25rem;
 	}
 
-	.mercury-artwork {
-		top: 50%;
-		bottom: auto;
-		left: 50%;
+	.mercury-primary {
 		height: min(65svh, 38rem);
-		transform: translate(-50%, -50%);
-	}
-
-	.editorial-column {
-		display: block;
-		padding-top: 2.75rem;
 	}
 
 	.homepage-content h1 { font-size: clamp(2.65rem, 11.5vw, 3.8rem); }
@@ -383,10 +400,79 @@ body.article-page {
 	.header-link,
 	.resume-link { font-size: 0.6rem; }
 	.artwork-column { height: 52svh; min-height: 22rem; }
-	.mercury-artwork { height: min(52svh, 30rem); }
+	.mercury-primary { height: min(52svh, 30rem); }
 	.homepage-content .lead { font-size: 1.02rem; }
 	.work-list li { grid-template-columns: 3.2rem minmax(0, 1fr); }
 	.work-list span { display: none; }
+}
+
+/* Mobile art direction: preserve the expressive upper half, then let the
+   lower half continue once—softly—behind the opening copy. */
+@media (max-width: 1080px) {
+	.artwork-column {
+		--mobile-art-height: min(62svh, 34rem);
+		height: calc(var(--mobile-art-height) * 0.5);
+		min-height: 0;
+		isolation: isolate;
+		overflow: visible;
+	}
+
+	.mercury-primary {
+		top: 0;
+		bottom: auto;
+		height: var(--mobile-art-height);
+		-webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 41%, rgba(0, 0, 0, 0.78) 45%, transparent 51%);
+		mask-image: linear-gradient(to bottom, #000 0%, #000 41%, rgba(0, 0, 0, 0.78) 45%, transparent 51%);
+		transform: translateX(-50%);
+		z-index: 2;
+	}
+
+	.mercury-afterimage {
+		display: block;
+		position: absolute;
+		top: calc(var(--mobile-art-height) * 0.45);
+		left: 50%;
+		width: calc(var(--mobile-art-height) * 2 / 3);
+		height: calc(var(--mobile-art-height) * 0.58);
+		overflow: hidden;
+		pointer-events: none;
+		-webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.76) 56%, transparent 100%);
+		mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.76) 56%, transparent 100%);
+		transform: translateX(-50%);
+		z-index: 0;
+	}
+
+	.mercury-afterimage-ink {
+		position: absolute;
+		top: calc(var(--mobile-art-height) * -0.45);
+		left: 0;
+		width: 100%;
+		height: var(--mobile-art-height);
+		background: var(--color-gold);
+		-webkit-mask: url('/images/hermes-ink-mask.png') center / contain no-repeat;
+		mask: url('/images/hermes-ink-mask.png') center / contain no-repeat;
+		opacity: 0.09;
+		filter: blur(1.5px);
+	}
+
+	.editorial-column {
+		position: relative;
+		z-index: 1;
+		padding-top: clamp(1.5rem, 4vh, 2.25rem);
+	}
+}
+
+@media (max-width: 380px) {
+	.site-header-inner {
+		align-items: flex-start;
+	}
+
+	.header-right { gap: 0.55rem; }
+	.header-link,
+	.resume-link {
+		font-size: 0.56rem;
+		letter-spacing: 0.08em;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

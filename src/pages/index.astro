@@ -10,7 +10,12 @@ const posts = await getPublishedPosts();
 <HomeLayout title={SITE_PAGE_TITLE} description={SITE_DESCRIPTION} variant="portfolio">
 	<div class="portfolio-shell">
 		<div class="artwork-column" aria-hidden="true">
-			<div class="mercury-artwork"></div>
+			<div class="mercury-primary">
+				<div class="mercury-artwork"></div>
+			</div>
+			<div class="mercury-afterimage">
+				<div class="mercury-afterimage-ink"></div>
+			</div>
 		</div>
 
 		<section class="editorial-column" aria-label="Professional profile">
