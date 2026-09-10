@@ -169,14 +169,6 @@ body.portfolio-page {
 	line-height: 0.98;
 }
 
-.homepage-content h1 span {
-	display: block;
-}
-
-.homepage-content h1 span + span {
-	font-style: italic;
-}
-
 .homepage-content .lead {
 	max-width: 36rem;
 	margin: clamp(1.5rem, 2.8vh, 2.2rem) 0 0;
