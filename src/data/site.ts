@@ -1,3 +1,3 @@
-export const META_TITLE = 'Furkan Eskil — Business Development, Sales Development & B2B Sales';
+export const META_TITLE = 'Furkan Eskil — Independent Business Development Consultant';
 export const META_DESCRIPTION =
-	'Furkan Eskil is building a career in Business Development, Sales Development, and B2B Sales with a focus on research, clear communication, and relevant customer conversations.';
+	'Independent business development consultant working with software and IT service companies on research, outbound prospecting, qualification, and pipeline support.';
