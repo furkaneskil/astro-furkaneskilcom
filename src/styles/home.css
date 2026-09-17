@@ -325,6 +325,7 @@ body.article-page {
 	.site-header-inner {
 		display: flex;
 		justify-content: space-between;
+		max-width: 56rem;
 		padding: 1.4rem clamp(1.25rem, 4vw, 2.5rem) 0;
 	}
 
@@ -361,11 +362,15 @@ body.article-page {
 	}
 
 	.homepage-content {
-		max-width: 44rem;
-		margin: 0 auto;
+		width: 100%;
+		max-width: none;
+		margin: 0;
 	}
 
-	.homepage-content h1 { font-size: clamp(3rem, 6.5vw, 4.1rem); }
+	.homepage-content h1 {
+		max-width: 50rem;
+		font-size: clamp(2.85rem, 5vw, 3.6rem);
+	}
 	.professional-line { font-size: 0.76rem; }
 }
 
